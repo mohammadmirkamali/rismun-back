@@ -8,6 +8,7 @@ const movies = require("./routes/movies");
 const rentals = require("./routes/rentals");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
+const actors = require("./routes/actors");
 const express = require("express");
 const app = express();
 
@@ -21,8 +22,9 @@ mongoose
   .then(() => console.log("Connected to MongoDB..."))
   .catch(err => console.error("Could not connect to MongoDB..."));
 
-app.use(express.json());
+app.use(express.json([{ limite: "50mb" }]));
 app.use("/api/genres", genres);
+app.use("/api/actors", actors);
 app.use("/api/customers", customers);
 app.use("/api/movies", movies);
 app.use("/api/rentals", rentals);
