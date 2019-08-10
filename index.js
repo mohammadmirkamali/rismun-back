@@ -24,19 +24,19 @@ mongoose
   .catch(err => console.error("Could not connect to MongoDB..."));
 
 app.use(express.json([{ limite: "50mb" }]));
-app.use("/api/genres", genres);
 app.use(cors());
+app.use("/api/genres", genres);
 app.use("/api/actors", actors);
 app.use("/api/customers", customers);
 app.use("/api/movies", movies);
 app.use("/api/rentals", rentals);
 app.use("/api/users", users);
 app.use("/api/auth", auth);
-app.use(
-  cors({
-    origin: "http://localhost:8000/"
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:8000/"
+//   })
+// );
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
