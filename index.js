@@ -9,6 +9,7 @@ const rentals = require("./routes/rentals");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const actors = require("./routes/actors");
+const cors = require("cors");
 const express = require("express");
 const app = express();
 
@@ -24,12 +25,18 @@ mongoose
 
 app.use(express.json([{ limite: "50mb" }]));
 app.use("/api/genres", genres);
+app.use(cors());
 app.use("/api/actors", actors);
 app.use("/api/customers", customers);
 app.use("/api/movies", movies);
 app.use("/api/rentals", rentals);
 app.use("/api/users", users);
 app.use("/api/auth", auth);
+app.use(
+  cors({
+    origin: "http://localhost:8000/"
+  })
+);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
